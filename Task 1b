@@ -1,0 +1,8 @@
+/* Question 1 (b) */
+SELECT op.OwnerID, op.PropertyID , p.Name AS PropertyName, pf.CurrentHomeValue
+FROM OwnerProperty op
+INNER JOIN Property p
+ON op.Id = p.Id
+INNER JOIN PropertyFinance pf
+ON op.PropertyId = pf.PropertyId
+WHERE op.OwnerId = 1426;

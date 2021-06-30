@@ -1,0 +1,6 @@
+/* Question 1(a) */
+SELECT op.OwnerID, op.PropertyID, p.Name AS PropertyName
+FROM OwnerProperty op
+INNER JOIN Property p
+ON op.Id = p.Id
+WHERE OwnerId = 1426;

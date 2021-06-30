@@ -1,0 +1,6 @@
+/* Task 1d */
+SELECT j.OwnerId, j.JobDescription, jw.IsActive
+FROM Job as j
+INNER JOIN JobWatchList AS jw
+ON j.OwnerId = jw.PersonId
+WHERE OwnerId =1426;

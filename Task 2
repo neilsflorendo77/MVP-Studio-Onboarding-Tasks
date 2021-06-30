@@ -1,0 +1,12 @@
+/*  Task 2  */
+SELECT CONCAT  (n.Firstname, ' ',  n.Lastname) AS CurrentOwner,
+pe.Id, pe.propertyId,
+p.Name AS ProperyName, p.Bedroom, p.Bathroom, CONCAT (a.Number, ' ',  a.Street, ' ', a.Suburb, ' ',  a.City, ' ', a.Region) AS Address,
+pe.Description AS Expense, pe.Amount, pe.Date
+FROM person as N
+INNER JOIN  OwnerProperty AS OP ON N.Id = OP.Id
+INNER JOIN Property AS P ON OP.PropertyId = P.Id
+INNER JOIN Address a ON p.AddressId = a.AddressId
+INNER JOIN PropertyExpense AS pe ON pe.PropertyId = p.Id
+WHERE p.Name = 'Property A'
+

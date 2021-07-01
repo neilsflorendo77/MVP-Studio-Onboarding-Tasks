@@ -1,1 +1,8 @@
-
+SELECT n.FirstName, n.LastName, op.OwnerID, op.PropertyID, p.Name AS PropertyName , tp.PaymentFrequencyId,
+rt.Name as PaymentFrequency , tp.PaymentAmount AS RentalAmount
+FROM OwnerProperty op
+INNER JOIN Property p ON op.Id = p.Id
+INNER JOIN Person n ON n.Id = p.Id
+INNER JOIN TenantProperty tp ON tp.propertyId = op.propertyId
+INNER JOIN TargetRentType rt ON rt.Id = tp.PaymentFrequencyId
+WHERE OwnerId = 1426;

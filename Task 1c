@@ -1,16 +1,15 @@
 /* Question 1 (c) */
-SELECT p.Name,  tp.PropertyId,
+SELECT op.OwnerId, tp.PropertyId, tp.StartDate, tp.EndDate, tp.PaymentFrequencyId, tp.PaymentAmount,
 CASE
-
-WHEN PaymentFrequencyId = 1
+WHEN PaymentFrequencyId = 1                             --refers to the weekly payment
 THEN
 DATEDIFF(Week,StartDate,EndDate) * PaymentAmount
 
-WHEN PaymentFrequencyId = 2
+WHEN PaymentFrequencyId = 2								--refers to the fortnightly payment								
 THEN
 (DATEDIFF(Week,StartDate,EndDate)/2)* PaymentAmount
 
-WHEN PaymentFrequencyId = 3
+WHEN PaymentFrequencyId = 3                             --refers to the monthly payment
 THEN
 DATEDIFF(Month,StartDate,EndDate)* PaymentAmount
 
@@ -18,9 +17,7 @@ ELSE ''
 END TotalPaymentAmount
 
 FROM TenantProperty tp
-INNER JOIN  Property p 
-ON tp.PropertyId = p.Id
-
-INNER JOIN OwnerProperty op 
-ON op.PropertyId = p.Id
+INNER JOIN  Property p ON tp.PropertyId = p.Id
+INNER JOIN OwnerProperty op ON op.PropertyId = p.Id
+INNER JOIN TenantPaymentFrequencies pf ON pf.Id = tp.PaymentFrequencyId
 WHERE (op.OwnerId = 1426)
